@@ -2,6 +2,7 @@ import { EventEmitter } from 'events';
 import AppDispatcher from '../AppDispatcher';
 
 let _allRooms = [];
+let _currRoom = [];
 
 class ChatStore extends EventEmitter {
   constructor() {
@@ -11,8 +12,13 @@ class ChatStore extends EventEmitter {
       const { type, payload } = action;
       switch(type) {
         case 'GET_CHATROOMS':
-        console.log('payLoad: ', payload)
           _allRooms = payload;
+          this.emit('CHANGE');
+          break;
+
+        case 'GET_CURR_ROOM':
+          console.log('currROom: ', payload);
+          _currRoom = payload;
           this.emit('CHANGE');
           break;
       }
@@ -29,6 +35,10 @@ class ChatStore extends EventEmitter {
 
   getChatRooms() {
     return _allRooms;
+  }
+
+  getCurrentRoom() {
+    return _currRoom;
   }
 }
 

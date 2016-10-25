@@ -5,15 +5,14 @@ import './socket-init';
 
 import Layout from './components/Layout';
 import MainPage from './components/MainPage';
-import ChatStore from './stores/ChatStore';
+import InsideRoom from './components/InsideRoom';
+import './stores/ChatStore';
 
 render(
   <Router history={browserHistory}>
     <Route path='/' component={Layout}>
       <IndexRoute component={MainPage} />
-      
-      {/* <Route path='favorites' component={FavoritesPage} />
-      <Route path='watchList' component={WatchList} /> */}
+      <Route path='chatrooms/:id' component={InsideRoom} />
     </Route>
   </Router>,
   document.getElementById('root')

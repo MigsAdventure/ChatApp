@@ -31,6 +31,22 @@ const API = {
       });
   },
 
+  openChatRoom(room) {
+    ServerActions.receiveCurrRoom(room);
+  },
+
+  sendMessage(msg) {
+    console.log(msg);
+    axios.post('/api/messages', msg)
+      .then((res) => {
+        console.log('res msg: ', res);
+      });
+    axios.get(`/api/messages/${msg.chatRoom}`)
+      .then((res) => {
+        console.log('getId Res: ', res);
+      });
+  },
+
 };
 
 

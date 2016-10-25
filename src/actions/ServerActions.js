@@ -7,5 +7,12 @@ const ServerActions = {
       payload: rooms,
     });
   },
+
+  receiveCurrRoom(room) {
+    AppDispatcher.dispatch({
+      type: 'GET_CURR_ROOM',
+      payload: room,
+    });
+  },
 };
 export default ServerActions;

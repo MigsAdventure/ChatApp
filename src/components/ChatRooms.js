@@ -32,8 +32,8 @@ export default class ChatRooms extends Component {
   }
 
   openChatRoom(room) {
-    // ChatActions.openChatRoom(room);
-    // browserHistory.push(`/chatrooms/${room.id}`);
+    browserHistory.push(`/chatrooms/${room._id}`);
+    ChatActions.openChatRoom(room);
   }
 
   deleteRoom(id) {

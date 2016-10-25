@@ -25,7 +25,7 @@ router.route('/')
 
 router.route('/:id')
 .get((req, res) => {
-  MessagesModel.findById(req.params.id).populate('messages').exec()
+  MessagesModel.find({chatRoom: req.params.id}).populate('messages').exec()
   .then((message) => {
     res.status(200).send(message);
   })

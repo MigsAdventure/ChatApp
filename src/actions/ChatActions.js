@@ -13,5 +13,13 @@ const ChatActions = {
     API.deleteRoom(id);
   },
 
+  openChatRoom(room) {
+    API.openChatRoom(room);
+  },
+
+  sendMessage(msg) {
+    API.sendMessage(msg);
+  },
+
 };
 export default ChatActions;
