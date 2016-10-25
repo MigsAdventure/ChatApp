@@ -12,7 +12,8 @@ export default class InputForm extends Component {
   _submitForm(e) {
     e.preventDefault();
     const { roomInput } = this.refs;
-    const input = roomInput.value;
+    let input = roomInput.value;
+    console.log(input)
     ChatActions.createNewRoom(input);
   }
 

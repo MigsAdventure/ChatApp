@@ -5,5 +5,13 @@ const ChatActions = {
     API.createNewRoom(input);
   },
 
+  getChatRooms() {
+    API.getChatRooms();
+  },
+
+  deleteRoom(id) {
+    API.deleteRoom(id);
+  },
+
 };
 export default ChatActions;

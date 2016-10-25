@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const chatroomSchema = new mongoose.Schema({
   name: { type: String },
-  messages: { type: Array },
+  messages: [{ type: mongoose.Schema.Types.ObjectId, ref: 'MessagesModel' }],
   createdAt: { type: Date, default: Date.now },
 });
 

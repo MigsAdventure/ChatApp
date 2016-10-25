@@ -2,24 +2,35 @@ import axios from 'axios';
 import ServerActions from './actions/ServerActions';
 
 const API = {
-  getAllRooms() {
+  getChatRooms() {
     axios.get('/api/chatrooms')
     .then((res) => {
-      // console.log('a;llrooms API:', res)
-      ServerActions.receiveAllRooms(res);
+      ServerActions.receiveAllRooms(res.data);
     });
   },
 
   createNewRoom(input) {
-    axios.post('/api/chatrooms', input)
+    axios.post('/api/chatrooms', {name:input})
     .then((res) => {
       console.log('(res) in neRoomInput: ', (res));
-      API.getAllRooms();
+      API.getChatRooms();
     })
     .catch((err) => {
       console.log('err:', err);
     });
   },
+
+  deleteRoom(id) {
+    axios.delete(`/api/chatrooms/${id}`)
+      .then((res) => {
+
+        API.getChatRooms();
+      })
+      .catch((err) => {
+        console.log('err: ', err);
+      });
+  },
+
 };
 
 

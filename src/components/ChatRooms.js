@@ -9,12 +9,15 @@ export default class ChatRooms extends Component {
     super();
 
     this._onChange = this._onChange.bind(this);
+    this.deleteRoom = this.deleteRoom.bind(this);
+    this.openChatRoom = this.openChatRoom.bind(this);
     this.state = {
       results: ChatStore.getChatRooms(),
     }
   }
 
   componentWillMount() {
+    ChatActions.getChatRooms();
     ChatStore.startListening(this._onChange);
   }
 
@@ -24,7 +27,7 @@ export default class ChatRooms extends Component {
 
   _onChange() {
     this.setState({
-      results: ChatStore.getSearchResults(),
+      results: ChatStore.getChatRooms(),
     });
   }
 
@@ -33,21 +36,29 @@ export default class ChatRooms extends Component {
     // browserHistory.push(`/chatrooms/${room.id}`);
   }
 
+  deleteRoom(id) {
+    console.log('id: ', id)
+    ChatActions.deleteRoom(id);
+  }
+
   render() {
     const { results } = this.state;
-
     return (
       <div>
-        <h1>chatrooms!!!</h1>
-
-        {/* {
-          results.map((room, i) => (
-          <div key={i} onClick={() => this.openChatRoom(room)} >Room: {i}</div>
-
-          ))
-        } */}
+        <h2>All Rooms</h2>
+        <div>
+          {
+            results.map((room, i) => (
+              <div key={i} onClick={() => this.openChatRoom(room)} >
+                <h2>Room: {i}</h2>
+                <h2>{room.name}</h2>
+                <button className='btn btn-danger' onClick={this.deleteRoom.bind(null, room._id)}>Delete</button>
+              </div>
+            ))
+          }
+        </div>
       </div>
-    )
+    );
   }
 
 }

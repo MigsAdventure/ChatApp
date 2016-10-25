@@ -1,5 +1,5 @@
 import { EventEmitter } from 'events';
-import AppDispatcher from '../AppDispatcher'
+import AppDispatcher from '../AppDispatcher';
 
 let _allRooms = [];
 
@@ -8,10 +8,11 @@ class ChatStore extends EventEmitter {
     super();
 
     AppDispatcher.register(action => {
-      let { type, payload } = action;
-      switch(action) {
+      const { type, payload } = action;
+      switch(type) {
         case 'GET_CHATROOMS':
-          _allRooms = action.payload.rooms;
+        console.log('payLoad: ', payload)
+          _allRooms = payload;
           this.emit('CHANGE');
           break;
       }
